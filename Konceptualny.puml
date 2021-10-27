@@ -1,0 +1,31 @@
+@startuml  konceptualny
+entity album{
+  * name
+}
+
+entity photo{
+  * reference
+  * likes
+  * dislikes
+  * views
+  * title
+  * description
+  * location
+}
+
+entity tag{
+  * name
+}
+
+entity comment{
+  * photo_id
+  * user
+  * content
+  * date
+}
+
+
+photo }|-- album
+comment }|-- photo
+tag }|-- photo
+@enduml
