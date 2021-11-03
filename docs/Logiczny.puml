@@ -8,6 +8,7 @@ entity album{
 entity photo{
   * id: number
   -- 
+  * album_id: number
   * reference: text
   * likes: number
   * dislikes: number
