@@ -9,9 +9,9 @@ entity photo{
   * id: SERIAL
   --
   * reference: TEXT
-  * likes: INT
-  * dislikes: INT
-  * views: INT
+  * likes: UNSIGNED INT
+  * dislikes: UNSIGNED INT
+  * views: UNSIGNED INT
   * title: VARCHAR(255)
   * description: TEXT
   * location: VARCHAR(255)
@@ -25,14 +25,14 @@ entity tag{
 
 entity tag_photo{
   * PRIMARY KEY(id_tag, id_photo)
-  * id_tag: INT
-  * id_photo: INT
+  * id_tag: UNSIGNED BIGINT
+  * id_photo: UNSIGNED BIGINT
 }
 
 entity comment{
   * id: SERIAL
   --
-  * photo_id: INT
+  * photo_id: UNSIGNED BIGINT
   * user: VARCHAR(255)
   * content: TEXT
   * date: DATETIME
