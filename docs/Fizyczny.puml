@@ -8,6 +8,7 @@ entity album{
 entity photo{
   * id: SERIAL
   --
+  * album_id: UNSIGNED BIGINT
   * reference: TEXT
   * likes: UNSIGNED INT
   * dislikes: UNSIGNED INT
