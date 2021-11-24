@@ -1,0 +1,57 @@
+Album interface:
+    - Pobranie listy albumów - GET /album?page=1&size=1
+    - Pobranie pojedynczego albumu na podstawie id - GET /album/{id}
+    - Dodanie albumu - POST /album
+      {"name":"Nazwa Albumu"}
+    - Edycja albumu - PUT /album/{id}
+      {"name":"Nowa nazwa albumu"}
+    - Usuwanie albumu - DELETE /album/{id}
+    - Pobieranie listy zdjęć z albumu - GET /album/{id}/photo/?page=1&size=1
+    - Dodawanie zdjęcia do albumu - POST /album/{id}/photo
+      {"id":"ID ZDJĘCIA"}
+    - Usuwanie zdjęcia z albumu - DELETE /album/{id}/photo/{id}
+
+
+Photo interfacce:
+    - Pobieranie listy zdjęć - GET /photo?page=1&size=1
+    - Pobieranie pojedynczego zdjęcia - GET /photo/{id}
+    - Edycja zdjęcia - PUT /photo/{id}
+      {"reference":"LINK DO ZDJĘCIA", "title":"TYTUŁ ZDJĘCIA","description":"OPIS ZDJĘCIA","location":"LOKALIZACJA WYKONANIA ZDJĘCIA"}
+    - Dodawanie zdjęcia - POST /photo
+      {"reference":"LINK DO ZDJĘCIA", "title":"TYTUŁ ZDJĘCIA","description":"OPIS ZDJĘCIA","location":"LOKALIZACJA WYKONANIA ZDJĘCIA"}
+    - Usuwanie zdjęcia - DELETE /photo/{id}
+    - Dodawanie tagu do zdjęcia - POST /photo/{id}/tag
+      {"id":"ID TAGU"}
+    - Pobieranie tagów do zdjęcia - GET /photo/{id}/tag
+    - Dodawanie komentarza do zdjęcia - POST /photo/{id}/comment
+      {"user":"NAZWA UŻYTKOWNIKA","content":"KOMENTARZ"}
+    - Pobieranie komentarzy do zdjęcia - GET /photo/{id}/comment
+
+
+Like (Sub)interface:
+    - Dodanie polubienia - POST /photo/like
+      {"id":"ID Zdjęcia"}
+    - Usuwanie polubienia - DELETE /photo/like
+      {"id":"ID Zdjęcia"}
+    - Dodanie nie polubienia - POST /photo/dislike
+      {"id":"ID Zdjęcia"}
+    - Usuwanie nie polubienia - DELETE /photo/dislike
+      {"id":"ID Zdjęcia"}
+      
+    
+Tag interface:
+    - Pobieranie listy tagów - GET /tag?page=1&size=1
+    - Pobieranie pojedynczego tagu - GET /tag/{id}
+    - Dodawanie tagu - POST /tag
+      {"name":"NAZWA TAGU"}
+    - Usuwanie tagu - DELETE /tag/{id}
+    - Edycja tagu - PUT /tag/{id}
+      {"name":"NOWA NAZWA TAGU"}
+    
+  
+Comment interface:
+    - Pobieranie pojedynczego komentarza - GET /comment/{id}
+    - Usuwanie komentarza - DELETE /comment/{id}
+    - Edycja komentarza - PUT /comment/{id}
+      {"user":"NAZWA UŻYTKOWNIKA","content":"KOMENTARZ"}
+
