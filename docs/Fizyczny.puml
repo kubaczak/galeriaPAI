@@ -1,0 +1,47 @@
+@startuml fizyczny
+entity album{
+  * id: SERIAL
+  --
+  * name: VARCHAR(255)
+}
+
+entity photo{
+  * id: SERIAL
+  --
+  * album_id: UNSIGNED BIGINT
+  * reference: TEXT
+  * likes: UNSIGNED INT
+  * dislikes: UNSIGNED INT
+  * views: UNSIGNED INT
+  * title: VARCHAR(255)
+  * description: TEXT
+  * location: VARCHAR(255)
+}
+
+entity tag{
+  * id: SERIAL
+  --
+  * name: VARCHAR(255)
+}
+
+entity tag_photo{
+  * PRIMARY KEY(id_tag, id_photo)
+  * id_tag: UNSIGNED BIGINT
+  * id_photo: UNSIGNED BIGINT
+}
+
+entity comment{
+  * id: SERIAL
+  --
+  * photo_id: UNSIGNED BIGINT
+  * user: VARCHAR(255)
+  * content: TEXT
+  * date: DATETIME
+}
+
+
+photo }|-- album
+comment }|-- photo
+tag_photo }|-- photo
+tag }|-- tag_photo
+@enduml

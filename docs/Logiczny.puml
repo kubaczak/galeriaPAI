@@ -1,0 +1,46 @@
+@startuml logiczny
+entity album{
+  * id: number
+  --
+  * name: varchar(255)
+}
+
+entity photo{
+  * id: number
+  -- 
+  * album_id: number
+  * reference: text
+  * likes: number
+  * dislikes: number
+  * views: number
+  * title: varchar(255)
+  * description: text
+  * location: varchar(255)
+}
+
+entity tag{
+  * id: number
+  --
+  * name: varchar(255)
+}
+
+entity tag_photo{
+  * id_tag: number
+  * id_photo: number
+}
+
+entity comment{
+  * id: number
+  --
+  * photo_id: number
+  * user: varchar(255)
+  * content: text
+  * date: datetime
+}
+
+
+photo }|-- album
+comment }|-- photo
+tag_photo }|-- photo
+tag }|-- tag_photo
+@enduml
