@@ -9,7 +9,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TagRepository::class)]
-#[ApiResource]
+#[ORM\Table(name: "tag")]
+#[ApiResource(
+    formats: ["json"]
+)]
 class Tag
 {
     #[ORM\Id]

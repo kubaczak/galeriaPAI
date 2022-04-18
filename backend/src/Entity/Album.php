@@ -10,10 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: AlbumRepository::class)]
-
+#[ORM\Table(name: "album")]
 #[ApiResource(
-  normalizationContext:["read"],
-  denormalizationContext:["write"]
+    denormalizationContext: ['groups' => ['write']],
+    formats: ["json"],
+    normalizationContext: ['groups' => ['read']]
 )]
 
 class Album
@@ -25,9 +26,11 @@ class Album
     #[Groups("read")]
     private $id;
 
+    #[Groups(["read", "write"])]
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
+    #[Groups(["read", "write"])]
     #[ORM\OneToMany(mappedBy: 'album', targetEntity: Photo::class, orphanRemoval: true)]
     private $photos;
 
