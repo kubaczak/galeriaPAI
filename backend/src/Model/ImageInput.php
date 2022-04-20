@@ -1,56 +1,44 @@
 <?php
 
-namespace App\Entity;
-
-use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\PhotoRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
-use App\Model\ImageInput;
-
-#[ORM\Table(name: "photo")]
-#[ORM\Entity(repositoryClass: PhotoRepository::class)]
-#[ApiResource(
-    formats: ["json"],
-	input: ImageInput::class
-)]
-class Photo
+namespace App\Model;
+use Symfony\Component\Validator\Constraints as Assert;
+use App\Entity\Album;
+use App\Entity\Comment;
+use App\Entity\Tag;
+class ImageInput
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+	
+	#[Assert\NotBlank]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 1024)]
-    private $reference;
+    #[Assert\NotBlank]
+    private $imageContent;
 
-    #[ORM\Column(type: 'integer')]
+    #[Assert\NotBlank]
     private $likes;
 
-    #[ORM\Column(type: 'integer')]
+	#[Assert\NotBlank]
     private $dislikes;
 
-    #[ORM\Column(type: 'integer')]
+    #[Assert\NotBlank]
     private $views;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private $title;
 
-    #[ORM\Column(type: 'string', length: 1024)]
+    #[Assert\NotBlank]
     private $description;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private $location;
 
-    #[ORM\ManyToOne(targetEntity: Album::class, inversedBy: 'photos')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotBlank]
     private $album;
 
-    #[ORM\OneToMany(mappedBy: 'photo', targetEntity: Comment::class, orphanRemoval: true)]
+    #[Assert\NotBlank]
     private $comments;
 
-    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'photos')]
+    #[Assert\NotBlank]
     private $tags;
 
     public function __construct()
@@ -64,15 +52,12 @@ class Photo
         return $this->id;
     }
 
-    public function getReference(): ?string
-    {
-        return $this->reference;
+    public function getImageContent() {
+        return $this->imageContent;
     }
 
-    public function setReference(string $reference): self
-    {
-        $this->reference = $reference;
-
+    public function setImageContent($imageContent) {
+        $this->imageContent = $imageContent;
         return $this;
     }
 
