@@ -13,7 +13,7 @@ use App\Model\ImageInput;
 #[ORM\Entity(repositoryClass: PhotoRepository::class)]
 #[ApiResource(
     formats: ["json"],
-	input: ImageInput::class
+    input: ImageInput::class
 )]
 class Photo
 {

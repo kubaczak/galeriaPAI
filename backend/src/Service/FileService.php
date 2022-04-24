@@ -7,18 +7,20 @@ use Symfony\Component\Mime\MimeTypes;
 /**
  * @author Dawid Góra
  */
-class FileService {
+class FileService
+{
 
     /** @var string */
     //TODO move it to config
-    public const FILES_PATH = "C:/Users/kubaczak/Desktop/symfony/backend/zdjecia";
-    public const ENDPOINT_PATH = "/photos/";
+    public const FILES_PATH = "C:\Users\kubaczak\Desktop\pai\backend\zdjecia";
+    public const ENDPOINT_PATH = "/photos/upload/";
 
     /**
      * @param string $base64
      * @return string name of converted file
      */
-    public function convertToFile(string $base64): string {
+    public function convertToFile(string $base64): string
+    {
         $fileName = $this->generateFileName();
         $filePath = $this->generateFilePath($fileName);
 
@@ -36,14 +38,16 @@ class FileService {
      * @param string $fileName
      * @return string
      */
-    private function generateFilePath(string $fileName): string {
+    private function generateFilePath(string $fileName): string
+    {
         return self::FILES_PATH . '/' . $fileName;
     }
 
     /**
      * @return string
      */
-    private function generateFileName(): string {
+    private function generateFileName(): string
+    {
         return uniqid("img_", true);
     }
 
@@ -51,10 +55,10 @@ class FileService {
      * @param string $filePath
      * @return string
      */
-    private function getFileExt(string $filePath): string {
+    private function getFileExt(string $filePath): string
+    {
         $extensionGuesser = new MimeTypes();
 
         return $extensionGuesser->getExtensions($extensionGuesser->guessMimeType($filePath))[0];
     }
-
 }

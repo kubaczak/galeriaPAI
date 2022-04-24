@@ -1,15 +1,12 @@
 <?php
 
 namespace App\Model;
+
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Entity\Album;
-use App\Entity\Comment;
-use App\Entity\Tag;
+
 class ImageInput
 {
-	
-	#[Assert\NotBlank]
-    private $id;
 
     #[Assert\NotBlank]
     private $imageContent;
@@ -17,7 +14,7 @@ class ImageInput
     #[Assert\NotBlank]
     private $likes;
 
-	#[Assert\NotBlank]
+    #[Assert\NotBlank]
     private $dislikes;
 
     #[Assert\NotBlank]
@@ -35,16 +32,9 @@ class ImageInput
     #[Assert\NotBlank]
     private $album;
 
-    #[Assert\NotBlank]
-    private $comments;
-
-    #[Assert\NotBlank]
-    private $tags;
 
     public function __construct()
     {
-        $this->comments = new ArrayCollection();
-        $this->tags = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -52,11 +42,13 @@ class ImageInput
         return $this->id;
     }
 
-    public function getImageContent() {
+    public function getImageContent()
+    {
         return $this->imageContent;
     }
 
-    public function setImageContent($imageContent) {
+    public function setImageContent($imageContent)
+    {
         $this->imageContent = $imageContent;
         return $this;
     }
@@ -133,68 +125,14 @@ class ImageInput
         return $this;
     }
 
-    public function getAlbum(): ?Album
+    public function getAlbumId(): ?Album
     {
         return $this->album;
     }
 
-    public function setAlbum(?Album $album): self
+    public function setAlbumId(?Album $album): self
     {
         $this->album = $album;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Comment>
-     */
-    public function getComments(): Collection
-    {
-        return $this->comments;
-    }
-
-    public function addComment(Comment $comment): self
-    {
-        if (!$this->comments->contains($comment)) {
-            $this->comments[] = $comment;
-            $comment->setPhoto($this);
-        }
-
-        return $this;
-    }
-
-    public function removeComment(Comment $comment): self
-    {
-        if ($this->comments->removeElement($comment)) {
-            // set the owning side to null (unless already changed)
-            if ($comment->getPhoto() === $this) {
-                $comment->setPhoto(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Tag>
-     */
-    public function getTags(): Collection
-    {
-        return $this->tags;
-    }
-
-    public function addTag(Tag $tag): self
-    {
-        if (!$this->tags->contains($tag)) {
-            $this->tags[] = $tag;
-        }
-
-        return $this;
-    }
-
-    public function removeTag(Tag $tag): self
-    {
-        $this->tags->removeElement($tag);
 
         return $this;
     }
