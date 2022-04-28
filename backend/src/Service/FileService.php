@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use Symfony\Component\Mime\MimeTypes;
+use Symfony\Component\Dotenv\Dotenv;
 
 /**
  * @author Dawid Góra

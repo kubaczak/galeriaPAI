@@ -52,6 +52,7 @@ class ImageInputTransformer implements DataTransformerInterface
         $photo->setDislikes($object->getDislikes());
         $photo->setViews($object->getViews());
         $photo->setLocation($object->getLocation());
+
         $photo->setReference($this->fileService->convertToFile($object->getImageContent()));
 
         return $photo;
